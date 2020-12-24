@@ -11,12 +11,10 @@
 #define PID_controller
 
 //macros for constant
-#define Pid_kp 1
-#define Pid_Ki 0.01
-#define Pid_kd 1
+
 
 #define In_max_lim 10
-#define In_min_lim -4
+#define In_min_lim -100
 #define Pid_voltage_max 20
 #define Pid_voltage_min 0.001
 #define time_constant 0.01

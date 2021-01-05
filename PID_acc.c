@@ -51,12 +51,12 @@ var32type PIDController_update(PIDcontroller *pid, float sp, var32type measured_
 	pid->integrator = pid->integrator + pid->Ki*pid->T*0.5*(error+ pid->prev_error);
 
 	//integral windup
-/*
+
 	if (pid->integrator > pid->integral_max){
 		pid->integrator = pid->integral_max;
 	} else if (pid->integrator < pid->integral_min){
 		pid->integrator = pid->integral_min;
-	} */
+	} 
 	//windup checking 
 //printf("PID integrator  = %f \t", pid->integrator);
 
@@ -68,7 +68,7 @@ var32type PIDController_update(PIDcontroller *pid, float sp, var32type measured_
   
   float differn = low_pass_filter(&filter, pid->diff);
 
-	pid->voltage_out = pid->diff ;//propotional + pid->integrator; 
+	pid->voltage_out = pid->diff + propotional + pid->integrator; 
  
 
 	if (pid->voltage_out> pid->voltage_max){
@@ -76,18 +76,16 @@ var32type PIDController_update(PIDcontroller *pid, float sp, var32type measured_
 	}else if (pid->voltage_out < pid->voltage_min){
 		pid->voltage_out = pid->voltage_min ;
 	}
-  //printf("voltage out  = %f \t", pid->voltage_out);
+  printf("voltage out  = %f \t", pid->voltage_out);
   printf("Measured value  = %f \t",  measured_value);
-  printf("Prev value  = %f \t", pid->prev_meas);
   printf("diff  = %f \t", pid->diff);
-  //printf("Propotional  = %f \t", propotional);
-  //printf("Meas  = %f \t", measured_voltage);
+
 
 	pid->prev_error = error;
 	pid->prev_meas = measured_value;
 
   dac_out = (int) (pid->voltage_out * pow(2, 12) / 10);
-  //printf("dac  = %f \t", dac_out);
+
 
 	return dac_out;
 

@@ -14,9 +14,9 @@
 
 
 #define In_max_lim 10
-#define In_min_lim -100
-#define Pid_voltage_max 20
-#define Pid_voltage_min 0.001
+#define In_min_lim -10
+#define Pid_voltage_max 10
+#define Pid_voltage_min 0
 #define time_constant 0.01
 
 typedef struct

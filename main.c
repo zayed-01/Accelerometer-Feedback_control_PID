@@ -24,7 +24,7 @@ int main(void) {
 
 
   PIDcontroller pid = {1, 10 , 0,time_constant, Sample_time,
-  In_max_lim, In_min_lim, Pid_voltage_max, Pid_voltage_min };
+  In_min_lim, In_max_lim, Pid_voltage_max, Pid_voltage_min };
   PIDController_init(&pid);
 
 
@@ -32,6 +32,8 @@ int main(void) {
 
 
   simulating_controller(&pid);
+
+  printf("Integral windup = %f", pid.integral_max);
 
 
   

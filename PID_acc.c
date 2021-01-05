@@ -57,6 +57,9 @@ var32type PIDController_update(PIDcontroller *pid, float sp, var32type measured_
 	} else if (pid->integrator < pid->integral_min){
 		pid->integrator = pid->integral_min;
 	} 
+
+
+  
 	//windup checking 
 //printf("PID integrator  = %f \t", pid->integrator);
 
@@ -76,9 +79,10 @@ var32type PIDController_update(PIDcontroller *pid, float sp, var32type measured_
 	}else if (pid->voltage_out < pid->voltage_min){
 		pid->voltage_out = pid->voltage_min ;
 	}
+
   printf("voltage out  = %f \t", pid->voltage_out);
   printf("Measured value  = %f \t",  measured_value);
-  printf("diff  = %f \t", pid->diff);
+  printf("Integrator  = %f \t", pid->integrator);
 
 
 	pid->prev_error = error;

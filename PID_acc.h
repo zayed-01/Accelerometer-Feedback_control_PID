@@ -49,7 +49,7 @@ typedef struct
 } PIDcontroller;
 
 void PIDController_init(PIDcontroller *pid);
-var32type PIDController_update(PIDcontroller *pid, var32type sp, var32type measured_value);
+float PIDController_update(PIDcontroller *pid, var32type sp, var32type measured_value);
 
 void setGain(PIDcontroller *pid, var32type kp, var32type ki, var32type kd);
 

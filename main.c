@@ -33,7 +33,7 @@ int main(void) {
 
   simulating_controller(&pid);
 
-  printf("Integral windup = %f", pid.integral_max);
+  //printf("Integral windup = %f", pid.integral_max);
 
 
   
@@ -46,9 +46,9 @@ void simulating_controller(PIDcontroller *p){
 //simulating the function,
   for (int t=0; t<=Simulation_time; t++){
 
-    float control_out = PIDController_update(p,setpoint,meas[t]);
+    int control_out = PIDController_update(p,setpoint,meas[t]);
 
-    printf("Dac_out= %f\n", dac_out);
+    printf("Dac_out= %d\n", control_out);
 
 };
 

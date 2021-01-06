@@ -80,18 +80,18 @@ var32type PIDController_update(PIDcontroller *pid, float sp, var32type measured_
 		pid->voltage_out = pid->voltage_min ;
 	}
 
-  printf("voltage out  = %f \t", pid->voltage_out);
-  printf("Measured value  = %f \t",  measured_value);
-  printf("Integrator  = %f \t", pid->integrator);
+  //printf("voltage out  = %f \t", pid->voltage_out);
+  //printf("Measured value  = %f \t",  measured_value);
+  //printf("Integrator  = %f \t", pid->integrator);
 
 
 	pid->prev_error = error;
 	pid->prev_meas = measured_value;
 
-  dac_out = (int) (pid->voltage_out * pow(2, 12) / 10);
+  dac_out = (pid->voltage_out * pow(2, 12) / 10);
 
 
-	return dac_out;
+	return dac_out ;
 
 }
 

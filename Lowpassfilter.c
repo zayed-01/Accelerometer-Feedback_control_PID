@@ -21,7 +21,7 @@ float low_pass_filter(low_pass_f *p,float input )
   float filtered_out = p->prevoutput+ alpha*(input-p->prevoutput);
 
   p->prevoutput = filtered_out;
-  printf("%f \t", tau);
+  //printf("%f \t", tau);
 
   return filtered_out;
 

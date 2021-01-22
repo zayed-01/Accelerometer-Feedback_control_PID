@@ -48,8 +48,9 @@ void simulating_controller(PIDcontroller *p){
   for (int t=0; t<=Simulation_time; t++){
 
     int control_out = PIDController_update(p,setpoint,meas[t]);
+   //int control_output = low_pass_filter(&filter, meas[t]);
 
-    printf("%d\n", control_out);
+    printf("%d\n", control_output);
 
 };
 

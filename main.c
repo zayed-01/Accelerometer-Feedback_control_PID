@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h> 
 #include <math.h>
 #include "PID_acc.h"
 #include"Lowpassfilter.h"
@@ -7,7 +8,7 @@
 
 float dac_out;
 
-#define Simulation_time 84 
+#define Simulation_time 30 
 #define Sample_time .0001
 low_pass_f filter;
  
@@ -22,7 +23,7 @@ float  setpoint = 0;
 
 int main(void) {
 
-
+  
   PIDcontroller pid = {1, 10 , 0,time_constant, Sample_time,
   In_min_lim, In_max_lim, Pid_voltage_max, Pid_voltage_min };
   PIDController_init(&pid);
@@ -48,7 +49,7 @@ void simulating_controller(PIDcontroller *p){
 
     int control_out = PIDController_update(p,setpoint,meas[t]);
 
-    printf("Dac_out= %d\n", control_out);
+    printf("%d\n", control_out);
 
 };
 

@@ -1,7 +1,9 @@
 #include "PID_acc.h"
 #include<math.h>
+#include <stdbool.h> 
 #include "Lowpassfilter.h"
 float dac_out;
+bool  integral_switch;
 
 extern low_pass_f filter;
 void PIDController_init(PIDcontroller *pid) {
@@ -42,6 +44,8 @@ var32type PIDController_update(PIDcontroller *pid, float sp, var32type measured_
   Function: This functions calculates the controller output 
   */
   //measured_value: -2^23 -> 2^23
+  integral_switch = true;
+
   float measured_voltage = measured_value / pow(2, 23) * 2.4; // -2.4 -> 2.4
 
 	float error = measured_voltage;
@@ -54,9 +58,17 @@ var32type PIDController_update(PIDcontroller *pid, float sp, var32type measured_
 
 	if (pid->integrator > pid->integral_max){
 		pid->integrator = pid->integral_max;
+    if (error>0)
+      integral_switch = false;
+
+
 	} else if (pid->integrator < pid->integral_min){
 		pid->integrator = pid->integral_min;
+    if(error<0)
+      integral_switch= false;
 	} 
+  else 
+    pid->integrator = pid->integrator; 
 
 
   

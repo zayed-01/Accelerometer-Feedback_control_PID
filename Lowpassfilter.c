@@ -8,10 +8,7 @@ Objective : Its first order low pass filter. (expoential smoothing)
 Input : Address of the low pass variable, input to the filter from ADC and time between the last filter time
 Output: filtered output 
 **************************/
-
-
 float low_pass_filter(low_pass_f *p,float input )
-
 {  
   float sampling_time = .0001; //10Khz sampling rate;
 
@@ -24,9 +21,8 @@ float low_pass_filter(low_pass_f *p,float input )
   //printf("%f \t", tau);
 
   return filtered_out;
-
-
 }
+
 /************************
 Low pass filter Initialization 
 Objective : Initializing the filter paramters

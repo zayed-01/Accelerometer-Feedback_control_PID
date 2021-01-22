@@ -7,6 +7,9 @@
 #define cut_off_f 1200 //Cutoff ferqeucny of the 1st order filter 
 #define window_size  3 //Its the average length or number of data point
 
+/*********************************************************
+1st order Low Pass filter: Defining a exponential type  low pass filter
+*********************************************************/
 typedef struct {
   float prevoutput, Fc ;
 } low_pass_f;
@@ -15,7 +18,6 @@ typedef struct {
 /*********************************************************
 Moving average filter: Defining a movning average variable
 *********************************************************/
-
 typedef struct {
   int sum;
   int data_history[window_size];
